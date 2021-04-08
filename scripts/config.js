@@ -6,3 +6,5 @@ const bulletRadius = 5
 const g = 1
 const collisionLosses = 0.5
 const airLosses = 0.99
+const minCannonAngle = -Infinity // degreesToRadians(10)
+const maxCanonAngle = Infinity // degreesToRadians(80)
