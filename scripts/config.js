@@ -1,4 +1,4 @@
-const cannonWidth = 200
+const cannonWidth = 100
 const cannonHeight = 50
 const cannonRadius = 20
 const startBulletVelocity = 50
