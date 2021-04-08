@@ -20,15 +20,6 @@ function reactToKeyboardInput (event) {
 
     // sanitizeCannonState
 
-    // don't allow barrel rotation beyond certain limits
-    // sanitizeCannonAngle
-    if (cannonAngle > maxCanonAngle) {
-        cannonAngle = maxCanonAngle
-    }
-    if (cannonAngle < minCannonAngle) {
-        cannonAngle = minCannonAngle
-    }
-
     // don't allow movement beyond the edge of the screen
     // sanitizeCannonPosition
     if (cannonX < cannonRadius) {
