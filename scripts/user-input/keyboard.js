@@ -68,12 +68,35 @@ function reactToKeyboardInput (event) {
                         cannonAngle = Math.PI - cannonAngle
                     }
                 }
-                
+
                 break
 
             case 'ArrowUp':
-                cannonX -= cannonV * Math.cos(cannonAngle)
-                cannonY += cannonV * Math.sin(cannonAngle)
+                if (farthermostBarrelPointX < 0) {
+                    const allowedVx = farthermostBarrelPointX
+                    const allowedVy = allowedVx * Math.tan(cannonAngle)
+                    cannonX -= allowedVx
+                    cannonY += allowedVy
+                } else if (farthermostBarrelPointX > canvas.width) {
+                    const allowedVx = canvas.width - farthermostBarrelPointX
+                    const allowedVy = allowedVx * Math.tan(cannonAngle)
+                    cannonX += allowedVx
+                    cannonY += allowedVy
+                }
+                if (farthermostBarrelPointY < 0) {
+                    const allowedVy = farthermostBarrelPointY
+                    const allowedVx = allowedVy / Math.tan(cannonAngle)
+                    cannonX -= allowedVx
+                    cannonY -= allowedVy
+                } else if (farthermostBarrelPointY > canvas.height) {
+                    const allowedVy = canvas.height - farthermostBarrelPointY
+                    const allowedVx = allowedVy / Math.tan(cannonAngle)
+                    cannonX += allowedVx
+                    cannonY += allowedVy
+                } else {
+                    cannonX -= cannonV * Math.cos(cannonAngle)
+                    cannonY += cannonV * Math.sin(cannonAngle)
+                }
                 break
             case 'ArrowDown':
                 cannonX += cannonV * Math.cos(cannonAngle)
