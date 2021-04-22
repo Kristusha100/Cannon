@@ -73,29 +73,26 @@ function reactToKeyboardInput (event) {
 
             case 'ArrowUp':
                 if (farthermostBarrelPointX < 0) {
-                    const allowedVx = farthermostBarrelPointX
-                    const allowedVy = allowedVx * Math.tan(cannonAngle)
-                    cannonX -= allowedVx
-                    cannonY += allowedVy
+                    const compensationX = -farthermostBarrelPointX
+                    const compensationY = compensationX * Math.tan(cannonAngle)
+                    cannonX += compensationX
+                    cannonY += compensationY
                 } else if (farthermostBarrelPointX > canvas.width) {
-                    const allowedVx = canvas.width - farthermostBarrelPointX
-                    const allowedVy = allowedVx * Math.tan(cannonAngle)
-                    cannonX += allowedVx
-                    cannonY += allowedVy
+                    const compensationX = canvas.width - farthermostBarrelPointX
+                    const compensationY = compensationX * Math.tan(cannonAngle)
+                    cannonX += compensationX
+                    cannonY += compensationY
                 }
                 if (farthermostBarrelPointY < 0) {
-                    const allowedVy = farthermostBarrelPointY
-                    const allowedVx = allowedVy / Math.tan(cannonAngle)
-                    cannonX -= allowedVx
-                    cannonY -= allowedVy
+                    const compensationY = -farthermostBarrelPointY
+                    const compensationX = compensationY / Math.tan(cannonAngle)
+                    cannonX += compensationX
+                    cannonY += compensationY
                 } else if (farthermostBarrelPointY > canvas.height) {
-                    const allowedVy = canvas.height - farthermostBarrelPointY
-                    const allowedVx = allowedVy / Math.tan(cannonAngle)
-                    cannonX += allowedVx
-                    cannonY += allowedVy
-                } else {
-                    cannonX -= cannonV * Math.cos(cannonAngle)
-                    cannonY += cannonV * Math.sin(cannonAngle)
+                    const compensationY = canvas.height - farthermostBarrelPointY
+                    const compensationX = compensationY / Math.tan(cannonAngle)
+                    cannonX += compensationX
+                    cannonY += compensationY
                 }
                 break
             case 'ArrowDown':
